@@ -259,18 +259,14 @@ function loadLeaderboard() {
 }
 
 function fetchLeaderboardData() {
-    return new Promise((resolve, reject) => {
-        const readURL = 'https://script.google.com/macros/s/AKfycbwk7LTCY8cMMH3L4OH1E4mFkktJ-B9xM4SAkSUleS_D0Q1cE2XmrcfhTfQHeMyUQnXl/exec?action=get';
-        if (!readURL) {
-            reject();
-            return;
-        }
-        fetch(readURL)
-            .then((res) => res.json())
-            .then((data) => resolve(data))
-            .catch((err) => reject(err));
-    });
+  return new Promise((resolve, reject) => {
+    fetch('https://script.google.com/macros/s/AKfycbwk7LTCY8cMMH3L4OH1E4mFkktJ-B9xM4SAkSUleS_D0Q1cE2XmrcfhTfQHeMyUQnXl/exec') // REPLACE this
+      .then((res) => res.json())
+      .then((data) => resolve(data))
+      .catch((err) => reject(err));
+  });
 }
+
 
 function populateLeaderboardTable(data) {
     const tbody = document.querySelector('#leaderboardTable tbody');

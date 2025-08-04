@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         result: arraysEqual(currentOrder, correctOrder) ? 'Correct' : 'Incorrect',
         timestamp
     };
-    fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwk7LTCY8cMMH3L4OH1E4mFkktJ-B9xM4SAkSUleS_D0Q1cE2XmrcfhTfQHeMyUQnXl/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },

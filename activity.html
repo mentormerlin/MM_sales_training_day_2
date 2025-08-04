@@ -1,16 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mentor Merlin Activity</title>
-    <!-- Import the Mentor Merlin font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <!-- Shared styles -->
     <link rel="stylesheet" href="style.css" />
-    <!-- Activity specific script -->
     <script defer src="activity.js"></script>
-    <!-- Favicon links -->
     <link rel="icon" type="image/png" href="assets/MM_logo.png" />
     <link rel="shortcut icon" href="assets/MM_logo.png" type="image/png" />
     <link rel="apple-touch-icon" href="assets/MM_logo.png" />
@@ -24,7 +21,6 @@
             </div>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
                     <li><a href="activity.html" class="active">Activity</a></li>
                     <li><a href="admin.html">Admin</a></li>
                 </ul>
@@ -33,7 +29,6 @@
     </header>
     <main class="activity-container">
         <div class="container">
-            <!-- Start screen: ask for name and email before beginning the activity -->
             <div id="activity-start" class="activity-content">
                 <h2>Welcome to the NMC Flow Activity</h2>
                 <p class="description">Please enter your name and email to begin the activity.</p>
@@ -47,8 +42,6 @@
                 </div>
                 <button id="startActivityBtn" class="btn">Start Activity</button>
             </div>
-
-            <!-- Activity content: hidden until the user starts the activity -->
             <div id="activity-content" class="activity-content hidden">
                 <h2>Create an NMC Process Flow</h2>
                 <p class="description">The nursing registration process with the Nursing and Midwifery Council (NMC) involves multiple steps. Drag the tiles below into the correct chronological order to build the full process. When you are satisfied with your arrangement, click the submit button to check your answer.</p>
@@ -64,7 +57,6 @@
         </div>
     </footer>
     <script>
-        // update current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>

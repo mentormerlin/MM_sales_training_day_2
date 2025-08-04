@@ -1,26 +1,18 @@
-/* Activity.js + Google Sheets integration */
-// Activity page script for the jumbled order task
-
-/*
- * A simple drag‑and‑drop sortable list implementation.  The activity
- * presents a series of steps in random order.  The trainee must drag
- * the tiles into the correct chronological order and submit their
- * arrangement.  Feedback is provided without reloading the page.
- */
+// Activity page script for the jumbled order task with Google Sheets integration
 
 document.addEventListener('DOMContentLoaded', () => {
     const tilesContainer = document.getElementById('tilesContainer');
     const submitButton = document.getElementById('submitActivity');
     const resultEl = document.getElementById('activityResult');
 
-    // Elements for the start form
+    // Start form elements
     const startBtn = document.getElementById('startActivityBtn');
     const nameInput = document.getElementById('activityName');
     const emailInput = document.getElementById('activityEmail');
     const startSection = document.getElementById('activity-start');
     const contentSection = document.getElementById('activity-content');
 
-    // Define the steps in their correct order for the NMC process flow.
+    // NMC steps
     const steps = [
         { id: 1, text: ' Apply for NMC eligibility with valid passport and nursing qualification' },
         { id: 2, text: ' Upload documents (passport, qualification, registration) and pay £140 application fee' },
@@ -35,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 11, text: ' Receive NMC PIN – You are now a registered nurse in the UK' }
     ];
 
-    // Shuffle helper (Fisher‑Yates)
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -44,11 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return array;
     }
 
-    // Render and initialise the tiles. Called once after the user starts the activity.
     function initActivity() {
-        // Clear any existing tiles
         tilesContainer.innerHTML = '';
-        // Shuffle the steps so the starting order is random
         const shuffledSteps = shuffleArray([...steps]);
         shuffledSteps.forEach((step) => {
             const tile = document.createElement('div');
@@ -56,26 +44,25 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.draggable = true;
             tile.dataset.id = step.id;
             tile.textContent = step.text;
-            // Attach drag handlers for each tile
             tile.addEventListener('dragstart', handleDragStart);
             tile.addEventListener('dragend', handleDragEnd);
             tilesContainer.appendChild(tile);
         });
-        // Attach dragover handler to the container (only once per init)
         tilesContainer.addEventListener('dragover', handleDragOver);
     }
 
-    // Drag and drop handlers
     function handleDragStart(e) {
         if (e.target && e.target.classList.contains('tile')) {
             e.target.classList.add('dragging');
         }
     }
+
     function handleDragEnd(e) {
         if (e.target && e.target.classList.contains('tile')) {
             e.target.classList.remove('dragging');
         }
     }
+
     function handleDragOver(e) {
         e.preventDefault();
         const draggable = document.querySelector('.dragging');
@@ -88,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Determine the element to insert before based on cursor position
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.tile:not(.dragging)')];
         return draggableElements.reduce((closest, child) => {
@@ -102,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { offset: Number.NEGATIVE_INFINITY }).element;
     }
 
-    // Start button handler: validates input, stores details and shows the activity
     if (startBtn) {
         startBtn.addEventListener('click', () => {
             const name = nameInput.value.trim();
@@ -111,44 +96,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Please enter your name and email to start the activity.');
                 return;
             }
-            // Optionally store the values for later use
             sessionStorage.setItem('activity_userName', name);
             sessionStorage.setItem('activity_userEmail', email);
-            // Hide the start section and show the activity content
             startSection.classList.add('hidden');
             contentSection.classList.remove('hidden');
-            // Initialize the activity tiles
             initActivity();
         });
     }
 
-    // When the user submits, compare the current order to the correct one
     if (submitButton) {
         submitButton.addEventListener('click', () => {
             const currentOrder = Array.from(tilesContainer.children).map((child) => parseInt(child.dataset.id, 10));
             const correctOrder = steps.map((step) => step.id);
+            const isCorrect = arraysEqual(currentOrder, correctOrder);
+
             const name = sessionStorage.getItem('activity_userName');
-    const email = sessionStorage.getItem('activity_userEmail');
-    const timestamp = new Date().toISOString();
-    const resultObj = {
-        name,
-        email,
-        result: arraysEqual(currentOrder, correctOrder) ? 'Correct' : 'Incorrect',
-        timestamp
-    };
-    fetch('https://script.google.com/macros/s/AKfycbwk7LTCY8cMMH3L4OH1E4mFkktJ-B9xM4SAkSUleS_D0Q1cE2XmrcfhTfQHeMyUQnXl/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(resultObj)
-    }).catch(console.error);
-    if (arraysEqual(currentOrder, correctOrder)) {
-                resultEl.textContent = 'Great job! You have successfully created the NMC process flow.';
+            const email = sessionStorage.getItem('activity_userEmail');
+            const timestamp = new Date().toISOString();
+            const score = isCorrect ? correctOrder.length : 0;
+            const percentage = ((score / correctOrder.length) * 100).toFixed(2);
+            const status = isCorrect ? 'Passed' : 'Failed';
+
+            const resultObj = {
+                name,
+                email,
+                score,
+                percentage,
+                status,
+                timestamp
+            };
+
+            if (isCorrect) {
+                resultEl.textContent = '✅ Great job! You have successfully created the NMC process flow.';
                 resultEl.className = 'activity-result success';
             } else {
-                resultEl.textContent = 'Some steps are out of order. Please try again to complete the flow.';
+                resultEl.textContent = '⚠️ Some steps are out of order. Please try again to complete the flow.';
                 resultEl.className = 'activity-result error';
             }
+
+            const confirmationEl = document.createElement('p');
+            confirmationEl.style.marginTop = '1rem';
+            confirmationEl.style.color = '#2e8b57';
+            confirmationEl.style.fontWeight = '600';
+            confirmationEl.textContent = '✅ Your result has been submitted.';
+            resultEl.appendChild(confirmationEl);
+
+            fetch('https://script.google.com/macros/s/AKfycbwk7LTCY8cMMH3L4OH1E4mFkktJ-B9xM4SAkSUleS_D0Q1cE2XmrcfhTfQHeMyUQnXl/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(resultObj)
+            }).catch(console.error);
         });
     }
 

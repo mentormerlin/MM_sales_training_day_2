@@ -21,17 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define the steps in their correct order for the NMC process flow.
     const steps = [
-        { id: 1, text: '✅ Apply for NMC eligibility with valid passport and nursing qualification' },
-        { id: 2, text: '✅ Upload documents (passport, qualification, registration) and pay £140 application fee' },
-        { id: 3, text: '✅ Upload proof of English Language proficiency (OET or IELTS or SIFE route)' },
-        { id: 4, text: '✅ Receive NMC decision letter after document review (usually within 30 days)' },
-        { id: 5, text: '✅ Pass the Computer-Based Test (CBT) – pay £83 (part A + B)' },
-        { id: 6, text: '✅ Submit Health and Character declarations (PCC + Medical fitness)' },
-        { id: 7, text: '✅ Book OSCE after getting UK offer letter and arriving in the UK' },
-        { id: 8, text: '✅ Pass OSCE exam at test centre in UK – pay £794' },
-        { id: 9, text: '✅ Pay £153 final registration fee after passing OSCE' },
-        { id: 10, text: '✅ Submit referees (employer or academic) for NMC final verification' },
-        { id: 11, text: '✅ Receive NMC PIN – You are now a registered nurse in the UK' }
+        { id: 1, text: ' Apply for NMC eligibility with valid passport and nursing qualification' },
+        { id: 2, text: ' Upload documents (passport, qualification, registration) and pay £140 application fee' },
+        { id: 3, text: ' Upload proof of English Language proficiency (OET or IELTS or SIFE route)' },
+        { id: 4, text: ' Receive NMC decision letter after document review (usually within 30 days)' },
+        { id: 5, text: ' Pass the Computer-Based Test (CBT) – pay £83 (part A + B)' },
+        { id: 6, text: ' Submit Health and Character declarations (PCC + Medical fitness)' },
+        { id: 7, text: ' Book OSCE after getting UK offer letter and arriving in the UK' },
+        { id: 8, text: ' Pass OSCE exam at test centre in UK – pay £794' },
+        { id: 9, text: ' Pay £153 final registration fee after passing OSCE' },
+        { id: 10, text: ' Submit referees (employer or academic) for NMC final verification' },
+        { id: 11, text: ' Receive NMC PIN – You are now a registered nurse in the UK' }
     ];
 
     // Shuffle helper (Fisher‑Yates)

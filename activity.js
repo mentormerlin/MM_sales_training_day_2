@@ -1,3 +1,4 @@
+/* Activity.js + Google Sheets integration */
 // Activity page script for the jumbled order task
 
 /*
@@ -126,7 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.addEventListener('click', () => {
             const currentOrder = Array.from(tilesContainer.children).map((child) => parseInt(child.dataset.id, 10));
             const correctOrder = steps.map((step) => step.id);
-            if (arraysEqual(currentOrder, correctOrder)) {
+            const name = sessionStorage.getItem('activity_userName');
+    const email = sessionStorage.getItem('activity_userEmail');
+    const timestamp = new Date().toISOString();
+    const resultObj = {
+        name,
+        email,
+        result: arraysEqual(currentOrder, correctOrder) ? 'Correct' : 'Incorrect',
+        timestamp
+    };
+    fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(resultObj)
+    }).catch(console.error);
+    if (arraysEqual(currentOrder, correctOrder)) {
                 resultEl.textContent = 'Great job! You have successfully created the NMC process flow.';
                 resultEl.className = 'activity-result success';
             } else {

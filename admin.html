@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Leaderboard – Mentor Merlin Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <link rel="icon" type="image/png" href="/assets/MM_logo.png" />
+  <link rel="shortcut icon" href="/assets/MM_logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/MM_logo.png" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/MM_logo.png" alt="Mentor Merlin Logo" />
+        <span class="brand">Mentor Merlin</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="admin.html" class="active">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Updated Admin Section -->
+  <main class="admin-container">
+    <div class="container admin-content hidden" id="adminContent">
+      <h2>Admin Leaderboard</h2>
+      
+      <div class="table-wrapper">
+        <table id="leaderboardTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Score</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Login modal stays visible initially -->
+    <div id="adminLoginModal" class="modal-overlay">
+      <div class="modal">
+        <h3>Admin Login</h3>
+        <p>Please enter the admin password to view the leaderboard.</p>
+        <input type="password" id="adminPasswordInput" placeholder="Enter password" />
+        <button id="adminLoginBtn" class="btn small">Login</button>
+        <p id="loginError" class="error-message hidden">Incorrect password. Please try again.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Mentor Merlin. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+/* Global styles */
+:root {
+    --primary-color: #0c2d72; /* Dark navy used by Mentor Merlin */
+    --accent-color: #0066cc; /* Bright blue accent */
+    --light-bg: #f7faff; /* Very light background */
+    --text-color: #333;
+    --pass-color: #2e8b57;
+    --fail-color: #d62828;
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e6f7;
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* make the container a flex row to separate logo and nav */
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.navbar .logo img {
+    width: 40px;
+    height: auto;
+}
+.navbar nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* push nav links to the right */
+}
+
+/* Align logo to left and navigation to right inside the navbar */
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+.nav-links li a {
+    color: var(--primary-color);
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+.nav-links li a.active,
+.nav-links li a:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* Hero section */
+.hero {
+    background-color: var(--light-bg);
+    padding: 4rem 0 2rem;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+.hero h1 .accent {
+    color: var(--accent-color);
+}
+.hero .tagline {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+.hero .description {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    text-align: center;
+}
+.btn:hover {
+    background-color: var(--primary-color);
+}
+.btn.small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Features section */
+.features {
+    background-color: #fff;
+    padding: 3rem 0;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+.feature-item {
+    background-color: var(--light-bg);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.feature-item h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+.feature-item p {
+    color: #555;
+}
+.feature-item .accent {
+    color: var(--accent-color);
+}
+
+/* Quiz styles */
+.quiz-container {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+.quiz-start,
+.quiz-content,
+.quiz-result {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+.quiz-start h2,
+.quiz-result h2 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+}
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.timer {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--fail-color);
+}
+.progress-container {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-left: 1rem;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+.question-area h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+.question-area .question-text {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.option-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s;
+}
+.option-label:hover {
+    background-color: var(--light-bg);
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+.hidden {
+    display: none !important;
+}
+
+/* Result styles */
+.quiz-result p {
+    margin-bottom: 0.5rem;
+}
+.quiz-result .pass {
+    color: var(--pass-color);
+    font-weight: 600;
+}
+.quiz-result .fail {
+    color: var(--fail-color);
+    font-weight: 600;
+}
+.result-item {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+.result-item.correct {
+    background-color: #e8f5e9;
+    border-color: #c8e6c9;
+}
+.result-item.incorrect {
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+}
+.result-item p {
+    margin-bottom: 0.3rem;
+}
+.result-item .explanation {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Admin styles */
+.admin-container {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+.table-wrapper {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+table th,
+table td {
+    padding: 0.8rem 0.6rem;
+    border: 1px solid #eee;
+    text-align: left;
+}
+table th {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 500;
+}
+table tbody tr:nth-child(even) {
+    background-color: var(--light-bg);
+}
+.instructions {
+    margin-top: 2rem;
+    background-color: var(--light-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #e0e6f7;
+}
+.instructions h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+.instructions ol {
+    margin-left: 1rem;
+}
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* Modal overlay for admin login */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.modal {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.modal h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+.modal input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+}
+.error-message {
+    color: var(--fail-color);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #fff;
+    border-top: 1px solid #e0e6f7;
+    padding: 1rem 0;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .navbar nav {
+        display: none;
+    }
+    .navbar .logo {
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* adds spacing between the radio and text */
+}
+.option-label input[type="radio"] {
+  flex-shrink: 0;
+}
+
+/*
+ * Activity page styles
+ * These classes control the layout and appearance of the jumbled order
+ * activity.  Tiles are displayed as kanban‑style cards with generous
+ * spacing to avoid a congested look.
+ */
+.activity-container {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+
+.activity-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.activity-content h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+.activity-content .description {
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+/* Container for the tiles */
+.tiles-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual tile card */
+.tile {
+    width: 100%;
+    max-width: 700px;
+    background-color: rgba(0, 102, 204, 0.1);
+    color: var(--primary-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: move;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.tile:hover {
+    background-color: rgba(0, 102, 204, 0.2);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.tile.dragging {
+    opacity: 0.6;
+}
+
+/* Result message after submission */
+.activity-result {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.activity-result.success {
+    color: var(--pass-color);
+}
+.activity-result.error {
+    color: var(--fail-color);
+}
+

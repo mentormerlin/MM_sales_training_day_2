@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentor Merlin Quiz Portal</title>
+    <!-- Google font similar to Mentor Merlin site -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <!-- Font Awesome for icons (used sparingly) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-1xdWL9GVl6dKDhRI2TYKqRb3ZdVIEXJp3blzvbwUbbpYyuISWQukctq1aOcoHO+ZRCJXqAWWa99Hd5+ULBFP0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="/assets/MM_logo.png" />
+    <link rel="shortcut icon" href="/assets/MM_logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/MM_logo.png" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/MM_logo.png" alt="Mentor Merlin Logo" />
+                <span class="brand">Mentor Merlin</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="quiz.html">Quiz</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="hero">
+        <div class="container hero-content">
+            <h1>Learn Something <span class="accent">New</span> Today</h1>
+            <p class="tagline">Why wait? Just Merlin it!</p>
+            <p class="description">
+    Welcome to the Mentor Merlin training portal. Here you can take quizzes, test your
+    process knowledge and prepare for your professional journey. If you're new,
+    head over to the Quiz tab to get started.
+</p>
+
+            <a href="quiz.html" class="btn">Start Quiz</a>
+        </div>
+    </main>
+    <section class="features">
+        <div class="container features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-notes-medical fa-2x accent"></i>
+                <h3>Training for Nursing Exams</h3>
+                <p>Comprehensive preparation for OET, NMC CBT and OSCE ensuring nurses have all
+                    the resources they need to succeed.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-star fa-2x accent"></i>
+                <h3>Top Instructors</h3>
+                <p>Learn from the best in the industry with experienced mentors who guide you
+                    every step of the way.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-clock fa-2x accent"></i>
+                <h3>Flexible Programmes</h3>
+                <p>Study at your own pace with portable programmes accessible from any device,
+                    anytime, anywhere.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Mentor Merlin. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // update current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
